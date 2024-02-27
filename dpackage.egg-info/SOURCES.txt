@@ -1,0 +1,6 @@
+my_pip_package.py
+setup.py
+dpackage.egg-info/PKG-INFO
+dpackage.egg-info/SOURCES.txt
+dpackage.egg-info/dependency_links.txt
+dpackage.egg-info/top_level.txt
