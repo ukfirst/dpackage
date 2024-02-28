@@ -1,6 +1,6 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
-from my_pip_package import __version__
+from dpackage.__init__ import __version__
 
 setup(
     name='dpackage',
@@ -10,5 +10,5 @@ setup(
     author='UK',
     author_email='larsen@bk.ru',
 
-    py_modules=['my_pip_package'],
+    packages=find_packages(),
 )
