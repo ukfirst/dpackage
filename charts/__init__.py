@@ -1,6 +1,6 @@
 __version__ = '0.1'
-
-
+import pandas as pd
+import seaborn as sns
 def best_correlation(df, isrc, show_heatmap=False, amount=3, isrc_column='ISRC', date_column='DATE', total_column='TOTAL'):
     """Find the best correlated tracks by their performance"""
     df = pd.pivot_table(df, values=total_column, index=[date_column],columns=isrc_column, aggfunc=np.sum)
