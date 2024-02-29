@@ -5,7 +5,7 @@ import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
 from dataclasses import dataclass
-from pandas_helper import prepare_pivot
+from charts.pandas_helper import prepare_pivot
 
 @dataclass
 class MusicAnalysis:
