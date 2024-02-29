@@ -16,7 +16,7 @@ class MusicAnalysis:
     total_column: str = 'TOTAL'
 
     def __post_init__(self):
-        df = pd.pivot_table(self.df, values=self.total_column, index=[self.date_column], columns=self.isrc_column,
+        self.df = pd.pivot_table(self.df, values=self.total_column, index=[self.date_column], columns=self.isrc_column,
                             aggfunc=np.sum)
 
     def best_correlation(self, isrc, amount=3, show_heatmap=False):
