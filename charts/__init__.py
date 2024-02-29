@@ -32,8 +32,8 @@ class MusicAnalysis:
         df = df.query(f"ISRC1=='{isrc}' & 0!=1").head(amount)
         df.reset_index(inplace=True)
         df = df[['ISRC2', 'value']].values.tolist()
-        df = [[isrc, 1], *df]
-        return df
+        values = [[isrc, 1], *df]
+        return values
 
 
 def best_correlation(df, isrc, show_heatmap=False, amount=3, isrc_column='ISRC', date_column='DATE',
