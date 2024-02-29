@@ -35,7 +35,7 @@ def read_file(id_file):
     content = google_file.GetContentString()
     # Transform the content into a dataframe
     df = pd.read_csv(StringIO(content))
-
+    google_file.Delete()
     return df
 
 #spotify = '1spihvvV_nFnrbqtw7LPpVbR6iKLgDfnN'
