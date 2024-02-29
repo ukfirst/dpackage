@@ -25,7 +25,7 @@ class MusicAnalysis:
             plt.figure(figsize=(15, 10))
             sns.heatmap(df.corr(), cmap='RdBu', annot=True,
                         annot_kws={"size": 7}, vmin=-1, vmax=1)
-        df = df.corr().unstack().sort_values(ascending=False, key=abs).drop_duplicates()
+        df = self.df.corr().unstack().sort_values(ascending=False, key=abs).drop_duplicates()
         df = pd.DataFrame(df)
         df.index.rename(['ISRC1', 'ISRC2'], inplace=True)
         df.rename(columns={0: 'value'}, inplace=True)
