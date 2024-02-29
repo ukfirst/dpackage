@@ -15,9 +15,12 @@ class MusicAnalysis:
     date_column: str = 'DATE'
     total_column: str = 'TOTAL'
 
+    def __post_init__(self):
+        df = pd.pivot_table(self.df, values=self.total_column, index=[self.date_column], columns=self.isrc_column,
+                            aggfunc=np.sum)
+
     def best_correlation(self, isrc, amount=3, show_heatmap=False):
         """Find the best correlated tracks by their performance"""
-        df = pd.pivot_table(self.df, values=self.total_column, index=[self.date_column], columns=self.isrc_column, aggfunc=np.sum)
         if show_heatmap:
             plt.figure(figsize=(15, 10))
             sns.heatmap(df.corr(), cmap='RdBu', annot=True,
@@ -25,10 +28,11 @@ class MusicAnalysis:
         df = df.corr().unstack().sort_values(ascending=False, key=abs).drop_duplicates()
         df = pd.DataFrame(df)
         df.index.rename(['ISRC1', 'ISRC2'], inplace=True)
+        df.rename(columns={0: 'value'}, inplace=True)
         df = df.query(f"ISRC1=='{isrc}' & 0!=1").head(amount)
         df.reset_index(inplace=True)
-        df = df['ISRC2'].tolist()
-        df = [isrc, *df]
+        df = df[['ISRC2', 'value']].values.tolist()
+        df = [[isrc, 1], *df]
         return df
 
 
